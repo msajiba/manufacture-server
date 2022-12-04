@@ -19,7 +19,7 @@ app.use(express.urlencoded({
 
 //ROUTE ASSIGN
 app.use('/api/user', userRoute);
-app.use('/api/service', serviceRoute)
+app.use('/api/service', serviceRoute);
 app.use('/api/blog', blogRoute);
 app.use('/api/product', productRouter);
 
