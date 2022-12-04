@@ -7,6 +7,8 @@ require('./config/db');
 const userRoute = require('./routes/user.route');
 const serviceRoute = require('./routes/service.route');
 const blogRoute = require('./routes/blog.route');
+const productRouter = require('./routes/product.route');
+
 
 //MIDDLEWARE
 app.use(cors());
@@ -19,6 +21,7 @@ app.use(express.urlencoded({
 app.use('/api/user', userRoute);
 app.use('/api/service', serviceRoute)
 app.use('/api/blog', blogRoute);
+app.use('/api/product', productRouter);
 
 
 //handling route error

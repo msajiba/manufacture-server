@@ -1,8 +1,16 @@
 const mongoose = require('mongoose');
-const blogSchema = new mongoose.Schema({
-    email: {
+const blogModel = new mongoose.Schema({
+    name: {
         type: String,
         required: true
+    },
+    image: {
+        type: String,
+        required: true,
+    },
+    des: {
+        type: String,
+        required: type,
     },
     createOn: {
         type: Date,
@@ -10,4 +18,4 @@ const blogSchema = new mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model('blog', blogSchema)
+module.exports = mongoose.model('blog', blogModel)
