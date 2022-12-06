@@ -18,7 +18,7 @@ const productModel = new mongoose.Schema({
         type: Number,
         required: true
     },
-    des: {
+    description: {
         type: String,
         required: true
     },
