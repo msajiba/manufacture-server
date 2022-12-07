@@ -6,7 +6,14 @@ const getAllProduct = async (req, res) => {
 
 
 const createProduct = async (req, res) => {
-    res.send('product create successfully');
+    try {
+        const product = req.body;
+        const newProduct = new productModel(product);
+        await newProduct.save();
+        res.status(201).send({ message: 'product create successfully' });
+    } catch (error) {
+        res.save(404).send(error.message);
+    }
 };
 
 const updateProduct = async (req, res) => {
