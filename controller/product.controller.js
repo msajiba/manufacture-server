@@ -1,7 +1,12 @@
 const productModel = require("../models/product.model");
 
 const getAllProduct = async (req, res) => {
-    res.send('Get all product');
+    try {
+        const products = await productModel.find();
+        res.status(200).send(products);
+    } catch (error) {
+        res.status(403).send(error.message);
+    }
 };
 
 
@@ -10,7 +15,9 @@ const createProduct = async (req, res) => {
         const product = req.body;
         const newProduct = new productModel(product);
         await newProduct.save();
-        res.status(201).send({ message: 'product create successfully' });
+        res.status(201).send({
+            message: 'product create successfully'
+        });
     } catch (error) {
         res.save(404).send(error.message);
     }
