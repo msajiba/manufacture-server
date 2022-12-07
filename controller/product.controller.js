@@ -10,6 +10,20 @@ const getAllProduct = async (req, res) => {
 };
 
 
+const getSingleProduct = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const product = await productModel.findById({
+            _id: id
+        });
+        res.status(200).send(product);
+
+    } catch (error) {
+        res.status(404).send(error.message);
+    }
+};
+
+
 const createProduct = async (req, res) => {
     try {
         const product = req.body;
@@ -38,4 +52,5 @@ module.exports = {
     createProduct,
     updateProduct,
     deleteProduct,
+    getSingleProduct
 };
