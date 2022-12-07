@@ -33,7 +33,7 @@ const createProduct = async (req, res) => {
             message: 'product create successfully'
         });
     } catch (error) {
-        res.save(404).send(error.message);
+        res.status(404).send(error.message);
     }
 };
 

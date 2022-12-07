@@ -5,12 +5,12 @@ const blogModel = new mongoose.Schema({
         required: true
     },
     image: {
+        type: Object,
+        // required: true,
+    },
+    description: {
         type: String,
         required: true,
-    },
-    des: {
-        type: String,
-        required: type,
     },
     createOn: {
         type: Date,
