@@ -6,10 +6,7 @@ const getAllBlog = async (req, res) => {
 
 const createBlog = async (req, res) => {
 
-
-
     try {
-
         const blog = req.body;
         const filter = {
             name: req.body.name

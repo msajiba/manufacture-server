@@ -27,11 +27,24 @@ const getSingleProduct = async (req, res) => {
 const createProduct = async (req, res) => {
     try {
         const product = req.body;
-        const newProduct = new productModel(product);
-        await newProduct.save();
-        res.status(201).send({
-            message: 'product create successfully'
-        });
+        const filter = {
+            name: product.name
+        };
+        const existProduct = await productModel.findOne(filter);
+
+        if (existProduct) {
+            return res.json({
+                status: false,
+                message: 'Product already exist'
+            });
+        } else {
+            const newProduct = new productModel(product);
+            await newProduct.save();
+            res.status(201).send({
+                message: 'Create successful product',
+                status: true,
+            });
+        }
     } catch (error) {
         res.status(404).send(error.message);
     }
