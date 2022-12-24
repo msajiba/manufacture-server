@@ -1,7 +1,8 @@
 const blogModel = require("../models/blog.model");
 
 const getAllBlog = async (req, res) => {
-    res.send('get all blog');
+    const blogs = await blogModel.find();
+    res.status(200).json(blogs);
 };
 
 const createBlog = async (req, res) => {
@@ -37,7 +38,11 @@ const updateBlog = async (req, res) => {
 };
 
 const deleteBlog = async (req, res) => {
-    res.send('delete product');
+    const id = req.params.id;
+    const result = await blogModel.deleteOne({
+        _id: id
+    });
+    res.send(200).json(result);
 };
 
 module.exports = {

@@ -11,7 +11,7 @@ const router = express.Router();
 router.get('/', getAllBlog)
 router.post('/', createBlog);
 router.patch('/', updateBlog);
-router.delete('/', deleteBlog);
+router.delete('/:id', deleteBlog);
 
 
 module.exports = router;
