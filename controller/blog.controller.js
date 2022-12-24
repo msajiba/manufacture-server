@@ -42,7 +42,7 @@ const deleteBlog = async (req, res) => {
     const result = await blogModel.deleteOne({
         _id: id
     });
-    res.send(200).json(result);
+    res.status(200).json(result);
 };
 
 module.exports = {

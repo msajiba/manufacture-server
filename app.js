@@ -8,6 +8,7 @@ const userRoute = require('./routes/user.route');
 const serviceRoute = require('./routes/service.route');
 const blogRoute = require('./routes/blog.route');
 const productRouter = require('./routes/product.route');
+const reviewRouter = require('./routes/review.route');
 
 
 //MIDDLEWARE
@@ -17,11 +18,14 @@ app.use(express.urlencoded({
     extended: true
 }));
 
+
 //ROUTE ASSIGN
 app.use('/api/user', userRoute);
 app.use('/api/service', serviceRoute);
 app.use('/api/blog', blogRoute);
 app.use('/api/product', productRouter);
+app.use('/api/review', reviewRouter);
+
 
 
 //handling route error
@@ -30,6 +34,8 @@ app.use((req, res, next) => {
         message: 'Route not found'
     })
 });
+
+
 
 //handling server error
 app.use((err, req, res, next) => {
