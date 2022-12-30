@@ -54,11 +54,14 @@ const updateProduct = async (req, res) => {
     res.send('update product');
 };
 
+
 const deleteProduct = async (req, res) => {
-    res.send('product delete successfully');
+    const id = req.params.id;
+    const result = await productModel.deleteOne({
+        _id: id
+    });
+    res.status(200).send(result);
 };
-
-
 
 module.exports = {
     getAllProduct,

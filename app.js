@@ -9,6 +9,8 @@ const serviceRoute = require('./routes/service.route');
 const blogRoute = require('./routes/blog.route');
 const productRouter = require('./routes/product.route');
 const reviewRouter = require('./routes/review.route');
+const orderRouter = require('./routes/order.route');
+
 
 
 //MIDDLEWARE
@@ -25,6 +27,7 @@ app.use('/api/service', serviceRoute);
 app.use('/api/blog', blogRoute);
 app.use('/api/product', productRouter);
 app.use('/api/review', reviewRouter);
+app.use('/api/order', orderRouter);
 
 
 
