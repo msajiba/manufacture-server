@@ -51,7 +51,17 @@ const createProduct = async (req, res) => {
 };
 
 const updateProduct = async (req, res) => {
-    res.send('update product');
+    const id = req.params.id;
+    const updateProduct = req.body;
+    const filter = {
+        _id: id
+    };
+    const update = updateProduct;
+    await productModel.findOneAndUpdate(filter, update);
+    res.status(200).json({
+        status: true,
+        message: 'Product update success',
+    });
 };
 
 

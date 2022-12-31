@@ -5,6 +5,21 @@ const getAllBlog = async (req, res) => {
     res.status(200).json(blogs);
 };
 
+const getSingleBlog = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const blog = await blogModel.findById({
+            _id: id
+        });
+        res.status(200).send(blog);
+
+    } catch (error) {
+        res.status(404).send(error.message);
+    }
+};
+
+
+
 const createBlog = async (req, res) => {
 
     try {
@@ -34,7 +49,17 @@ const createBlog = async (req, res) => {
 
 
 const updateBlog = async (req, res) => {
-    res.send('update product');
+    const id = req.params.id;
+    const updateBlog = req.body;
+    const filter = {
+        _id: id
+    };
+    const update = updateBlog;
+    await blogModel.findOneAndUpdate(filter, update);
+    res.status(200).json({
+        status: true,
+        message: 'Blog update success',
+    });
 };
 
 const deleteBlog = async (req, res) => {
@@ -50,4 +75,5 @@ module.exports = {
     createBlog,
     updateBlog,
     deleteBlog,
+    getSingleBlog
 };

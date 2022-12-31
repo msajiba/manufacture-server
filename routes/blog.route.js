@@ -3,15 +3,16 @@ const {
     getAllBlog,
     createBlog,
     updateBlog,
-    deleteBlog
+    deleteBlog,
+    getSingleBlog
 } = require('../controller/blog.controller');
 
 const router = express.Router();
 
 router.get('/', getAllBlog)
+router.get('/:id', getSingleBlog);
 router.post('/', createBlog);
-router.patch('/', updateBlog);
+router.patch('/:id', updateBlog);
 router.delete('/:id', deleteBlog);
-
 
 module.exports = router;
