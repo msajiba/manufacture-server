@@ -3,10 +3,12 @@ const jwt = require("jsonwebtoken");
 require('dotenv').config();
 
 const getAllUser = async (req, res) => {
-    const users = await userModel.find();
-    res.status(200).json({
-        message: 'Get all user'
-    });
+    try {
+        const users = await userModel.find();
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(403).send(error.message);
+    }
 };
 
 const getAdmin = async (req, res) => {
@@ -15,7 +17,7 @@ const getAdmin = async (req, res) => {
         email: email
     });
 
-    const isAdmin = user ?.role === 'admin';
+    const isAdmin = user?.role === 'admin';
     res.status(200).json({
         admin: isAdmin
     });
@@ -27,12 +29,19 @@ const loginUser = async (req, res) => {
 
         const email = req.params.email;
         const user = req.body;
-      
-        const filter = {email: email};
-        const update = {user};
 
-        const result = await userModel.findOneAndUpdate(filter, update, {new: true, upsert: true});
-        
+        const filter = {
+            email: email
+        };
+        const update = {
+            user
+        };
+
+        const result = await userModel.findOneAndUpdate(filter, update, {
+            new: true,
+            upsert: true
+        });
+
         const token = jwt.sign({
             email
         }, process.env.ACCESS_TOKEN, {
@@ -50,10 +59,23 @@ const loginUser = async (req, res) => {
     }
 };
 
+const deleteUser = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const result = await userModel.deleteOne({
+            _id: id
+        });
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(403).send(error.message);
+    }
+};
+
 
 module.exports = {
     getAllUser,
     loginUser,
     getAdmin,
-  
+    deleteUser
+
 };
