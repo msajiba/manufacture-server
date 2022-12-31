@@ -2,16 +2,20 @@ const mongoose = require('mongoose');
 const serviceModel = mongoose.Schema({
 
     image: {
-        type: String,
-        required: true
+        type: Object,
+        // required: true
     },
     name: {
         type: String,
         required: true
     },
-    title: {
+    description: {
         type: String,
         required: true
+    },
+    email: {
+        type: String,
+        required: true,
     },
     createOn: {
         type: Date,
