@@ -71,11 +71,38 @@ const deleteUser = async (req, res) => {
     }
 };
 
+const makeAdmin = async (req, res) => {
+
+    try {
+        const id = req.params.id;
+        const user = req.body;
+        const filter = {
+            _id: id
+        };
+        const update = {
+            role: 'admin'
+        };
+
+        const existUser = await userModel.findById({
+            _id: id
+        });
+        existUser.role = 'admin';
+        await existUser.save();
+        res.status(200).json({
+            status: true,
+            message: 'Admin make successful',
+        });
+    } catch (error) {
+        res.status(403).send(error.message);
+    }
+
+}
+
 
 module.exports = {
     getAllUser,
     loginUser,
     getAdmin,
-    deleteUser
-
+    deleteUser,
+    makeAdmin
 };

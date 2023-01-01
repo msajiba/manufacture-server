@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
 const reviewModel = new mongoose.Schema({
     ratting: {
-        type: String,
-        require: true,
+        type: Number,
+        required: [true, 'Please enter ratting'],
     },
     des: {
         type: String,
-        require: true,
+        maxLength: [500, "Review Description can't exceed 500 characters"],
+        required: true,
     },
     createOn: {
         type: Date,
