@@ -9,12 +9,16 @@ const orderModel = new mongoose.Schema({
         type: String,
         required: true
     },
-    price: {
+    totalPrice: {
         type: Number,
         required: true
     },
-    quantity: {
+    orderQuantity: {
         type: Number,
+        required: true
+    },
+    userName: {
+        type: String,
         required: true
     },
     email: {
@@ -25,9 +29,12 @@ const orderModel = new mongoose.Schema({
         type: Number,
         required: true
     },
+    address: {
+        type: String,
+        required: true,
+    },
     status: {
         type: Boolean,
-        // required: true
         default: false,
     },
     createOn: {

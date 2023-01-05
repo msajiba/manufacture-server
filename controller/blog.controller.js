@@ -1,11 +1,41 @@
 const blogModel = require("../models/blog.model");
 
 const getAllBlog = async (req, res) => {
-    const blogs = await blogModel.find();
-    res.status(200).json(blogs);
+    try {
+        const blogs = await blogModel.find();
+        res.status(200).json(blogs);
+    } catch (error) {
+        res.status(403).send(error.message);
+    }
 };
 
+
+
 const getSingleBlog = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const blog = await blogModel.findById({
+            _id: id
+        });
+        res.status(200).send(blog);
+
+    } catch (error) {
+        res.status(404).send(error.message);
+    }
+};
+
+//USER ==================
+
+const getAllUserBlog = async (req, res) => {
+    try {
+        const blogs = await blogModel.find();
+        res.status(200).json(blogs);
+    } catch (error) {
+        res.status(403).send(error.message);
+    }
+};
+
+const getSingleUserBlog = async (req, res) => {
     try {
         const id = req.params.id;
         const blog = await blogModel.findById({
@@ -75,5 +105,7 @@ module.exports = {
     createBlog,
     updateBlog,
     deleteBlog,
-    getSingleBlog
+    getSingleBlog,
+    getAllUserBlog,
+    getSingleUserBlog,
 };

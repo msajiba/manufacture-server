@@ -21,6 +21,31 @@ const getSingleService = async (req, res) => {
     }
 }
 
+// USER ============
+
+const getAllUserService = async (req, res) => {
+    try {
+        const services = await serviceModal.find();
+        res.status(200).send(services);
+    } catch (error) {
+        res.status(403).send(error.message);
+    }
+};
+
+const getSingleUserService = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const service = await serviceModal.findById({
+            _id: id
+        });
+        res.status(200).send(service);
+    } catch (error) {
+        res.status(403).send(error.message);
+    }
+}
+
+
+
 
 const createService = async (req, res) => {
 
@@ -88,4 +113,6 @@ module.exports = {
     createService,
     updateService,
     deleteService,
+    getAllUserService,
+    getSingleUserService
 };

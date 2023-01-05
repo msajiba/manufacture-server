@@ -11,22 +11,51 @@ const getAllOrder = async (req, res) => {
     }
 };
 
-const createOrder = async (req, res) => {
+//  ================>USER BASE ORDER SHOW<========== 
+
+const getUserORder = async (req, res) => {
     try {
-        const order = req.body;
-        console.log(order)
-        const newOrder = new orderModel(
-            order
-        );
-        await newOrder.save();
-        res.status(201).send('Order create successful');
+        const email = req.params.email;
+        const filter = {
+            email: email
+        };
+        const order = await orderModel.find(filter);
+        res.status(200).send(order);
     } catch (error) {
         res.status(403).send(error.message);
     }
 };
 
+
+const createOrder = async (req, res) => {
+    try {
+        const order = req.body;
+        const newOrder = new orderModel(
+            order
+        );
+        await newOrder.save();
+        res.status(201).send('Your order is success');
+    } catch (error) {
+        res.status(403).send(error.message);
+    }
+};
+
+
 // ==============ADMIN============
 const deleteOrder = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const result = await orderModel.deleteOne({
+            _id: id
+        });
+        res.status(200).send(result);
+    } catch (error) {
+        res.status(403).send(error.message);
+    }
+};
+
+// USER ========================
+const deleteUserOrder = async (req, res) => {
     try {
         const id = req.params.id;
         const result = await orderModel.deleteOne({
@@ -42,5 +71,7 @@ const deleteOrder = async (req, res) => {
 module.exports = {
     getAllOrder,
     createOrder,
-    deleteOrder
+    deleteOrder,
+    getUserORder,
+    deleteUserOrder,
 };

@@ -6,14 +6,15 @@ const {
     deleteUser,
     makeAdmin,
 } = require('../controller/user.controller');
+const verifyAdmin = require('../middleware/verifyAdmin');
 const verifyJWT = require('../middleware/verifyJWT');
 const router = express.Router();
 
-router.get('/', getAllUser);
+router.get('/', verifyJWT, verifyAdmin, getAllUser);
 router.get('/admin/:email', getAdmin);
 router.put('/login/:email', loginUser);
-router.patch('/:id', makeAdmin)
-router.delete('/:id', deleteUser);
+router.patch('/:id', verifyJWT, verifyAdmin, makeAdmin)
+router.delete('/:id', verifyJWT, verifyAdmin, deleteUser);
 
 
 

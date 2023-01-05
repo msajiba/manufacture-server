@@ -23,6 +23,32 @@ const getSingleProduct = async (req, res) => {
     }
 };
 
+// HOME PRODUCT =====================
+const getAllUserProduct = async (req, res) => {
+    try {
+        const products = await productModel.find();
+        res.status(200).send(products);
+    } catch (error) {
+        res.status(403).send(error.message);
+    }
+};
+
+const getSingleUserProduct = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const product = await productModel.findById({
+            _id: id
+        });
+        res.status(200).send(product);
+
+    } catch (error) {
+        res.status(404).send(error.message);
+    }
+};
+
+
+
+
 
 const createProduct = async (req, res) => {
     try {
@@ -78,5 +104,7 @@ module.exports = {
     createProduct,
     updateProduct,
     deleteProduct,
-    getSingleProduct
+    getSingleProduct,
+    getAllUserProduct,
+    getSingleUserProduct
 };
