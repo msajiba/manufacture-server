@@ -26,6 +26,18 @@ const getUserORder = async (req, res) => {
     }
 };
 
+const getSingleORder = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const result = await orderModel.findOne({
+            _id: id
+        });
+        res.status(200).send(result);
+    } catch (error) {
+        res.status(403).send(error.message);
+    }
+};
+
 
 const createOrder = async (req, res) => {
     try {
@@ -74,4 +86,5 @@ module.exports = {
     deleteOrder,
     getUserORder,
     deleteUserOrder,
+    getSingleORder
 };

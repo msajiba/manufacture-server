@@ -79,15 +79,14 @@ const makeAdmin = async (req, res) => {
         const filter = {
             _id: id
         };
-        const update = {
-            role: 'admin'
-        };
-
+        
         const existUser = await userModel.findById({
             _id: id
         });
         existUser.role = 'admin';
+
         await existUser.save();
+        
         res.status(200).json({
             status: true,
             message: 'Admin make successful',

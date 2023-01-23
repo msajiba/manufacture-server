@@ -10,6 +10,7 @@ const blogRoute = require('./routes/blog.route');
 const productRouter = require('./routes/product.route');
 const reviewRouter = require('./routes/review.route');
 const orderRouter = require('./routes/order.route');
+const paymentRouter = require('./routes/payment.route');
 
 
 
@@ -28,6 +29,7 @@ app.use('/api/blog', blogRoute);
 app.use('/api/product', productRouter);
 app.use('/api/review', reviewRouter);
 app.use('/api/order', orderRouter);
+app.use('/api/payment', paymentRouter);
 
 
 

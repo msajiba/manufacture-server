@@ -33,7 +33,7 @@ const orderModel = new mongoose.Schema({
         type: String,
         required: true,
     },
-    status: {
+    paid: {
         type: Boolean,
         default: false,
     },

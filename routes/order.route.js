@@ -4,14 +4,16 @@ const {
     createOrder,
     deleteOrder,
     getUserORder,
-    deleteUserOrder
+    getSingleORder
 } = require('../controller/order.controller');
 const verifyAdmin = require('../middleware/verifyAdmin');
 const verifyJWT = require('../middleware/verifyJWT');
 const router = express.Router();
 
 router.get('/user/:email', getUserORder);
-router.delete('/user/:id', deleteUserOrder);
+router.get('/user/:email', getSingleORder);
+
+router.get('/:id', verifyJWT, getSingleORder);
 
 router.post('/', verifyJWT, createOrder);
 
